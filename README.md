@@ -1,3 +1,21 @@
-# Por favor faça um Fork desse projeto!
+# Desafio Casa do Código - Orange Talents
 
-## Está em dúvida de como fazer um Fork? Não tem problema! [Aqui tem uma explicação do que entendemos que você deve considerar!](https://docs.github.com/en/github/getting-started-with-github/fork-a-repo)
+#### Forumulário de ideia | Implementação
+
+<b>Constraints:</b>
+* Máximo dois setters por classe
+* Sem services (1 MAX)
+
+
+## Check Points
+
+- [ ] cadastro-novo-autor
+- [ ] email-autor-unico
+- [ ] cadastro-de-uma-categoria
+- [ ] criacao-validador-generico
+- [ ] criar-um-novo-livro
+- [ ] exibir-lista-livros
+- [ ] pagina-detalhe-livro
+- [ ] cadastro-de-pais-e-estados-do-pais
+- [ ] comeco-fluxo-pagameno-parte-1
+
