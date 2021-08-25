@@ -9,20 +9,24 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.persistence.EntityManager;
+import javax.transaction.Transactional;
 import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
 
 @RestController
 @RequestMapping("/autores")
+@Valid
 public class AutorController {
 
     @Autowired
-    private AutorRepository autorRepository;
+    EntityManager manager;
 
     @PostMapping
-    public String salvaAutor(@RequestBody @Valid AutorForm autorForm) {
+    @Transactional
+    public String salvaAutor(@RequestBody @Valid @NotBlank AutorForm autorForm) {
         Autor autor = autorForm.converteParaAutor();
-        autorRepository.save(autor);
+        manager.persist(autor);
         return autor.toString();
-
     }
 }
