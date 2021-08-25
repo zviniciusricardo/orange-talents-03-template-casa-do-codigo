@@ -19,9 +19,10 @@ public class AutorController {
     private AutorRepository autorRepository;
 
     @PostMapping
-    public void salvaAutor(@RequestBody @Valid AutorForm autorForm) {
-        Autor autor = new Autor(autorForm.getNome(), autorForm.getEmail(), autorForm.getDescricao());
+    public String salvaAutor(@RequestBody @Valid AutorForm autorForm) {
+        Autor autor = autorForm.converteParaAutor();
         autorRepository.save(autor);
-    }
+        return autor.toString();
 
+    }
 }

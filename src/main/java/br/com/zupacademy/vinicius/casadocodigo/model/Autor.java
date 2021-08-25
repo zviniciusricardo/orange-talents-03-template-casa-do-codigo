@@ -45,7 +45,14 @@ public class Autor {
         return dataCriacao;
     }
 
-    private void criadoEm() {
-        this.dataCriacao = LocalDateTime.now();
+    private void criadoEm() { setDataCriacao(LocalDateTime.now()); }
+
+    public void setDataCriacao(LocalDateTime dataCriacao) {
+        this.dataCriacao = dataCriacao;
+    }
+
+    @Override
+    public String toString() {
+        return "{ \n" + "\t id: " + id +"\n}";
     }
 }
