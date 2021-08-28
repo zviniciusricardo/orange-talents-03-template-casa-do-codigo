@@ -4,9 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
 @Entity
@@ -16,36 +13,34 @@ public class Autor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private @NotBlank String nome;
-    private @NotBlank @Email String email;
-    private @NotBlank @Size(max = 400) String descricao;
-    private LocalDateTime dataCriacao;
+    private String email;
+
+    private String nome;
+
+    private String descricao;
+
+    private LocalDateTime dataCriacao = LocalDateTime.now();
 
     @Deprecated
-    Autor() {
+    public Autor() {
     }
 
-    public Autor(String nome, String email, String descricao) {
-        this.nome = nome;
+    public Autor(String email, String nome, String descricao) {
         this.email = email;
+        this.nome = nome;
         this.descricao = descricao;
-        criadoEm();
-    }
-
-    private void criadoEm() {
-        setDataCriacao(LocalDateTime.now());
     }
 
     public Long getId() {
         return id;
     }
 
-    public String getNome() {
-        return nome;
-    }
-
     public String getEmail() {
         return email;
+    }
+
+    public String getNome() {
+        return nome;
     }
 
     public String getDescricao() {
@@ -56,12 +51,13 @@ public class Autor {
         return dataCriacao;
     }
 
-    private void setDataCriacao(LocalDateTime dataCriacao) {
-        this.dataCriacao = dataCriacao;
-    }
-
     @Override
     public String toString() {
-        return "{ \n" + "\t id: " + id +"\n}";
+        return "Autor\n" +
+                "\tid=" +id+ "\n"+
+                "\temail=" +email+ "\n"+
+                "\tnome=" + nome + "\n"+
+                "\tdescricao=" + descricao + "\n"+
+                "\tdataCriacao=" + dataCriacao;
     }
 }

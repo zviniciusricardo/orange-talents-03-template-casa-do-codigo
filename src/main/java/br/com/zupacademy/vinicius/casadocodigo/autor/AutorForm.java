@@ -1,8 +1,6 @@
 package br.com.zupacademy.vinicius.casadocodigo.autor;
 
-import br.com.zupacademy.vinicius.casadocodigo.autor.Autor;
 import br.com.zupacademy.vinicius.casadocodigo.validator.UniqueValue;
-
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -19,19 +17,31 @@ public class AutorForm {
     @NotBlank @Size(max = 400)
     private String descricao;
 
-    public AutorForm(@NotBlank String nome,
-                     @NotBlank @Email String email,
+    @Deprecated
+    public AutorForm() {
+    }
+
+    public AutorForm(@NotBlank @Email String email,
+                     @NotBlank String nome,
                      @NotBlank @Size(max = 400) String descricao) {
-        this.nome = nome;
         this.email = email;
+        this.nome = nome;
         this.descricao = descricao;
     }
 
-    public Autor toModel() {
-        return new Autor(this.nome, this.email, this.descricao );
+    public Autor toAutor() {
+        return new Autor(this.email, this.nome, this.descricao );
     }
 
     public String getEmail() {
         return email;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String getDescricao() {
+        return descricao;
     }
 }

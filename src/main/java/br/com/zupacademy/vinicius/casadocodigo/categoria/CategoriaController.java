@@ -1,4 +1,4 @@
-package br.com.zupacademy.vinicius.casadocodigo.autor;
+package br.com.zupacademy.vinicius.casadocodigo.categoria;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,8 +10,8 @@ import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/autores")
-public class AutorController {
+@RequestMapping("/categorias")
+public class CategoriaController {
 
     @PersistenceContext
     private EntityManager manager;
@@ -19,9 +19,9 @@ public class AutorController {
     @PostMapping
     @Transactional
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<?> salvar(@RequestBody @Valid AutorForm autorForm) {
-        Autor autor = autorForm.toAutor();
-        manager.persist(autor);
-        return ResponseEntity.ok().body(autor.toString());
+    public ResponseEntity<?> salvaCategoria(@RequestBody @Valid CategoriaForm categoriaForm) {
+        Categoria categoria = categoriaForm.toModel();
+        manager.persist(categoria);
+        return ResponseEntity.ok().body(categoria.toString());
     }
 }
