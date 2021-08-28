@@ -1,6 +1,6 @@
-package br.com.zupacademy.vinicius.casadocodigo.repository;
+package br.com.zupacademy.vinicius.casadocodigo.autor;
 
-import br.com.zupacademy.vinicius.casadocodigo.model.Autor;
+import br.com.zupacademy.vinicius.casadocodigo.autor.Autor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

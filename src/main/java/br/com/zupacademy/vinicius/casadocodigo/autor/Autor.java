@@ -1,4 +1,4 @@
-package br.com.zupacademy.vinicius.casadocodigo.model;
+package br.com.zupacademy.vinicius.casadocodigo.autor;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,7 +23,6 @@ public class Autor {
 
     @Deprecated
     Autor() {
-
     }
 
     public Autor(String nome, String email, String descricao) {
@@ -31,6 +30,10 @@ public class Autor {
         this.email = email;
         this.descricao = descricao;
         criadoEm();
+    }
+
+    private void criadoEm() {
+        setDataCriacao(LocalDateTime.now());
     }
 
     public Long getId() {
@@ -53,9 +56,7 @@ public class Autor {
         return dataCriacao;
     }
 
-    private void criadoEm() { setDataCriacao(LocalDateTime.now()); }
-
-    public void setDataCriacao(LocalDateTime dataCriacao) {
+    private void setDataCriacao(LocalDateTime dataCriacao) {
         this.dataCriacao = dataCriacao;
     }
 

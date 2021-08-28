@@ -1,6 +1,6 @@
-package br.com.zupacademy.vinicius.casadocodigo.form;
+package br.com.zupacademy.vinicius.casadocodigo.autor;
 
-import br.com.zupacademy.vinicius.casadocodigo.model.Autor;
+import br.com.zupacademy.vinicius.casadocodigo.autor.Autor;
 import br.com.zupacademy.vinicius.casadocodigo.validator.UniqueValue;
 
 import javax.validation.constraints.Email;
