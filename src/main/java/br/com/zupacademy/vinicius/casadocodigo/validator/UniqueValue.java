@@ -10,7 +10,7 @@ import static java.lang.annotation.ElementType.*;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 @Documented
-@Constraint(validatedBy = { UniqueValueValidator.class } )
+@Constraint(validatedBy = { UniqueValidator.class } )
 @Target({ FIELD })
 @Retention(RUNTIME)
 public @interface UniqueValue {

@@ -7,7 +7,7 @@ import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import java.util.List;
 
-public class UniqueValueValidator implements ConstraintValidator<UniqueValue, Object> {
+public class UniqueValidator implements ConstraintValidator<UniqueValue, Object> {
 
     private String domainAttribute;
     private Class<?> klass;
