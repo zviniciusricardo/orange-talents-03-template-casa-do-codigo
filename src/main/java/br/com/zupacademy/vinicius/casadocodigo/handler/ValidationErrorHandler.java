@@ -1,4 +1,4 @@
-package br.com.zupacademy.vinicius.casadocodigo.exception;
+package br.com.zupacademy.vinicius.casadocodigo.handler;
 
 
 import org.springframework.beans.factory.annotation.Autowired;

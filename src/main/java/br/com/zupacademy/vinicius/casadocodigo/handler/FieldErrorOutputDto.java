@@ -1,4 +1,4 @@
-package br.com.zupacademy.vinicius.casadocodigo.exception;
+package br.com.zupacademy.vinicius.casadocodigo.handler;
 
 public class FieldErrorOutputDto {
 
