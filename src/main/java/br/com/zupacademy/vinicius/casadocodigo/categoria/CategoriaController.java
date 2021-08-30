@@ -22,6 +22,7 @@ public class CategoriaController {
     public ResponseEntity<?> salvaCategoria(@RequestBody @Valid CategoriaForm categoriaForm) {
         Categoria categoria = categoriaForm.toModel();
         manager.persist(categoria);
-        return ResponseEntity.ok().body(categoria.toString());
+        CategoriaDto dto = new CategoriaDto(categoria);
+        return ResponseEntity.ok().body(dto.toString());
     }
 }

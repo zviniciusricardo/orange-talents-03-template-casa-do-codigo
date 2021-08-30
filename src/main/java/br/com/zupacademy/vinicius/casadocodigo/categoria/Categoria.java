@@ -27,4 +27,12 @@ public class Categoria {
     public String toString() {
         return "Categoria \n" + "\tid=" +id+ "\n \tnome=" + nome;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
 }

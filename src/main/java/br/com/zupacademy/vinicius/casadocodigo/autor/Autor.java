@@ -54,10 +54,10 @@ public class Autor {
     @Override
     public String toString() {
         return "Autor\n" +
-                "\tid=" +id+ "\n"+
-                "\temail=" +email+ "\n"+
-                "\tnome=" + nome + "\n"+
-                "\tdescricao=" + descricao + "\n"+
-                "\tdataCriacao=" + dataCriacao;
+                "\n\tid=" +id+
+                "\n\temail=" +email+
+                "\n\tnome=" +nome+
+                "\n\tdescricao=" +descricao+
+                "\n\tdataCriacao=" +dataCriacao;
     }
 }

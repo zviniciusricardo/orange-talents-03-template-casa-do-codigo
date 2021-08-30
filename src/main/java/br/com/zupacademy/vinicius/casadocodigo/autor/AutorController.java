@@ -22,6 +22,7 @@ public class AutorController {
     public ResponseEntity<?> salvar(@RequestBody @Valid AutorForm autorForm) {
         Autor autor = autorForm.toAutor();
         manager.persist(autor);
-        return ResponseEntity.ok().body(autor.toString());
+        AutorDto dto = new AutorDto(autor);
+        return ResponseEntity.ok().body(dto.toString());
     }
 }
