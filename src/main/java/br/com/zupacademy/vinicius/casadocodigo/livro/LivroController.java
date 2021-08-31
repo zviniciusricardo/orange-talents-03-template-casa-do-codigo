@@ -1,6 +1,8 @@
 package br.com.zupacademy.vinicius.casadocodigo.livro;
 
+import br.com.zupacademy.vinicius.casadocodigo.autor.AutorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +21,10 @@ public class LivroController {
     private EntityManager manager;
 
     @Autowired
-    private LivroRepository repository;
+    private LivroRepository livroRepository;
+
+    @Autowired
+    private AutorRepository autorRepository;
 
     @PostMapping
     @Transactional
@@ -31,8 +36,14 @@ public class LivroController {
 
     @GetMapping
     public List<LivroDto> listaLivros() {
-        List<Livro>livros = repository.findAll();
+        List<Livro>livros = livroRepository.findAll();
         return livros.stream().map(livro ->
                 new LivroDto(livro)).collect(Collectors.toList());
+    }
+
+    @GetMapping("livros/{id}")
+    public ResponseEntity<?> detalhaLivro(@PathVariable Long id, EntityManager manager) {
+        return new ResponseEntity<LivroView>
+                (new LivroView(), HttpStatus.OK);
     }
 }
