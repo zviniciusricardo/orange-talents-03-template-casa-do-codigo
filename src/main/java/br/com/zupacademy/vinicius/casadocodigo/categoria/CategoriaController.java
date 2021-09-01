@@ -18,7 +18,6 @@ public class CategoriaController {
 
     @PostMapping
     @Transactional
-    @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<?> salvaCategoria(@RequestBody @Valid CategoriaForm categoriaForm) {
         Categoria categoria = categoriaForm.toModel();
         manager.persist(categoria);
