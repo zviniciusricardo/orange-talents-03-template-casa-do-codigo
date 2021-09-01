@@ -41,9 +41,11 @@ public class LivroController {
                 new LivroDto(livro)).collect(Collectors.toList());
     }
 
-    @GetMapping("livros/{id}")
-    public ResponseEntity<?> detalhaLivro(@PathVariable Long id, EntityManager manager) {
-        return new ResponseEntity<LivroView>
-                (new LivroView(), HttpStatus.OK);
+    @GetMapping("/livros/{id}")
+    public ResponseEntity<?> detalhaLivro(@PathVariable long id, LivroRepository repository) {
+
+        LivroViewForm viewForm = new LivroViewForm(id, repository);
+        return new ResponseEntity<>(
+                new LivroDetalhesDto(viewForm), HttpStatus.OK);
     }
 }

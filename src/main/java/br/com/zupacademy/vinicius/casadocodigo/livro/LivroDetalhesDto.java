@@ -1,13 +1,13 @@
 package br.com.zupacademy.vinicius.casadocodigo.livro;
 
-public class LivroViewDetalhes {
+public class LivroDetalhesDto {
 
     private Livro livro;
     private Float precoEbook;
     private Float precoImpresso;
     private Float precoEbookMaisImpresso;
 
-    public LivroViewDetalhes(LivroViewForm viewForm) {
+    public LivroDetalhesDto(LivroViewForm viewForm) {
         this.livro = viewForm.getLivro();
         this.precoEbook = this.livro.getPreco();
         this.precoImpresso = calculaPrecoImpresso(1.8F);
