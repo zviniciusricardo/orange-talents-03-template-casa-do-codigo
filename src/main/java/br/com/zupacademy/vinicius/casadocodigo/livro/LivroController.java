@@ -9,7 +9,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -40,7 +39,6 @@ public class LivroController {
 
     @GetMapping("/{id}")
     @ResponseBody
-    @ResponseStatus(value = HttpStatus.BAD_REQUEST)
     public ResponseEntity<?> detalhaLivro(@Valid @PathVariable Long id) {
         Livro livro = manager.find( Livro.class, id);
             return new ResponseEntity<>(new LivroDetalhesView

@@ -2,8 +2,10 @@ package br.com.zupacademy.vinicius.casadocodigo.livro;
 
 import br.com.zupacademy.vinicius.casadocodigo.autor.Autor;
 import br.com.zupacademy.vinicius.casadocodigo.categoria.Categoria;
+import br.com.zupacademy.vinicius.casadocodigo.validator.IfExists;
 
 import javax.persistence.*;
+import javax.validation.Valid;
 import javax.validation.constraints.*;
 import java.time.LocalDate;
 
@@ -13,6 +15,7 @@ public class Livro {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @IfExists(domainClass = Livro.class, fieldName = "id")
     private Long id;
 
     @NotBlank
@@ -50,7 +53,7 @@ public class Livro {
     public Livro(String titulo, String resumo,
                  Float preco, Integer numeroPaginas,
                  Long isbn, LocalDate dataPublicacao,
-                 Categoria categoria, Autor autor) {
+                 @Valid Categoria categoria,@Valid Autor autor) {
         this.titulo = titulo;
         this.resumo = resumo;
         this.preco = preco;

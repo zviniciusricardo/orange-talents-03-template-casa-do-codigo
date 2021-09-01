@@ -1,32 +1,47 @@
 package br.com.zupacademy.vinicius.casadocodigo.livro;
 
 import br.com.zupacademy.vinicius.casadocodigo.autor.Autor;
+import br.com.zupacademy.vinicius.casadocodigo.validator.IfExists;
+import br.com.zupacademy.vinicius.casadocodigo.validator.UniqueValue;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 public class LivroDetalhesForm {
 
 
+    @NotNull
+    @IfExists(domainClass = Livro.class, fieldName = "id")
+    @UniqueValue(domainClass = Livro.class, fieldName = "id")
     private Long id;
 
+    @NotBlank
     private String titulo;
 
+    @NotBlank
     private String resumo;
 
     private String sumario;
 
+    @NotNull
     private Integer numeroPaginas;
 
+    @NotNull
     private Long isbn;
 
+    @NotNull
     private LocalDate dataPublicacao;
 
+    @NotNull
     private Float precoEbook;
 
     private Float precoImpresso;
 
     private Float precoEbookMaisImpresso;
 
+    @IfExists(domainClass = Livro.class, fieldName = "autor")
+    @NotBlank
     private Autor autor;
 
     public LivroDetalhesForm(Livro livro) {

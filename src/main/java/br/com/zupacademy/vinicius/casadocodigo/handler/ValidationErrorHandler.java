@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 @RestControllerAdvice
@@ -22,8 +23,19 @@ public class ValidationErrorHandler {
     private MessageSource messageSource;
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ExceptionHandler(MethodArgumentNotValidException.class)
+    @ExceptionHandler({MethodArgumentNotValidException.class})
     public ValidationErrorsOutputDto handleValidationError(MethodArgumentNotValidException exception){
+
+        List<ObjectError> globalErrors = exception.getBindingResult().getGlobalErrors();
+        List<FieldError> fieldErrors = exception.getBindingResult().getFieldErrors();
+
+        return buildValidationErrors(globalErrors, fieldErrors);
+    }
+
+    /** Feito na cara dura  **/
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler({EntityNotFoundException.class})
+    public ValidationErrorsOutputDto handDuplicatedEntitieError(MethodArgumentNotValidException exception){
 
         List<ObjectError> globalErrors = exception.getBindingResult().getGlobalErrors();
         List<FieldError> fieldErrors = exception.getBindingResult().getFieldErrors();
