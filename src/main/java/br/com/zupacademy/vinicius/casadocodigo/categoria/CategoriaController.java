@@ -1,8 +1,10 @@
 package br.com.zupacademy.vinicius.casadocodigo.categoria;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -22,6 +24,6 @@ public class CategoriaController {
         Categoria categoria = categoriaForm.toModel();
         manager.persist(categoria);
         CategoriaDto dto = new CategoriaDto(categoria);
-        return ResponseEntity.ok().body(dto.toString());
+        return ResponseEntity.ok().body(dto);
     }
 }
