@@ -19,7 +19,7 @@ public class PaisController {
     @Transactional
     @PostMapping
     public ResponseEntity<?> salvar(@RequestBody @Valid PaisForm form) {
-        Pais pais = new Pais(form.getNome());
+        Pais pais = new Pais(form);
         repository.save(pais);
         return new ResponseEntity<>(new PaisDto(pais), HttpStatus.OK);
     }

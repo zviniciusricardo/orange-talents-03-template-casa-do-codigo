@@ -1,16 +1,19 @@
 package br.com.zupacademy.vinicius.casadocodigo.estado;
 
-import br.com.zupacademy.vinicius.casadocodigo.validator.UniqueValue;
+import br.com.zupacademy.vinicius.casadocodigo.pais.Pais;
+import br.com.zupacademy.vinicius.casadocodigo.validator.IfExists;
 
 import javax.validation.constraints.NotBlank;
 
 public class EstadoForm {
 
     @NotBlank
-    @UniqueValue(domainClass = Estado.class, fieldName = "nome")
     private String nome;
 
-    public EstadoForm(String nome) {
+    @IfExists(domainClass = Pais.class, fieldName = "id")
+    private Long paisId;
+
+    public EstadoForm(@NotBlank String nome) {
         this.nome = nome;
     }
 
@@ -20,5 +23,9 @@ public class EstadoForm {
 
     public String getNome() {
         return nome;
+    }
+
+    public Long getPaisId() {
+        return paisId;
     }
 }

@@ -27,9 +27,6 @@ public class IfExistsValidator implements ConstraintValidator<IfExists, Long> {
 
         List<?> list = query.getResultList();
 
-        return list.isEmpty();
+        return !list.isEmpty();
     }
-
-
-
 }

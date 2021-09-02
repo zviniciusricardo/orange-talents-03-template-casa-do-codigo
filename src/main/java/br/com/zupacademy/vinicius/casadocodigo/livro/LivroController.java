@@ -1,14 +1,15 @@
 package br.com.zupacademy.vinicius.casadocodigo.livro;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
+import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -39,9 +40,9 @@ public class LivroController {
 
     @GetMapping("/{id}")
     @ResponseBody
-    public ResponseEntity<?> detalhaLivro(@Valid @PathVariable Long id) {
+    public ResponseEntity<?> detalhaLivro(@Valid @PathVariable Long id, UriComponentsBuilder builder) {
         Livro livro = manager.find( Livro.class, id);
-            return new ResponseEntity<>(new LivroDetalhesView
-                    (new LivroDetalhesForm(livro)), HttpStatus.OK);
+        URI uri = builder.path("/livros/{id}").buildAndExpand(livro.getId()).toUri();
+        return ResponseEntity.created(uri).body(new LivroDetalhesView(new LivroDetalhesForm(livro)));
     }
 }

@@ -1,10 +1,10 @@
 package br.com.zupacademy.vinicius.casadocodigo.estado;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import br.com.zupacademy.vinicius.casadocodigo.pais.Pais;
+
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Estado {
@@ -13,8 +13,10 @@ public class Estado {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
     private String nome;
+
+    @ManyToOne
+    private Pais pais;
 
     public Estado(EstadoForm form) {
         this.nome = form.getNome();
@@ -30,5 +32,9 @@ public class Estado {
 
     public String getNome() {
         return nome;
+    }
+
+    public Pais getPais() {
+        return pais;
     }
 }
