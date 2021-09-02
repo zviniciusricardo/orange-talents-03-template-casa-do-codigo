@@ -13,6 +13,7 @@ public class Pais {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank
     private String nome;
 
     public Pais(@NotBlank PaisForm form) {

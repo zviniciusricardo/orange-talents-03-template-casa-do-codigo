@@ -13,13 +13,16 @@ public class Estado {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank
     private String nome;
 
+    @NotNull
     @ManyToOne
     private Pais pais;
 
-    public Estado(EstadoForm form) {
+    public Estado(EstadoForm form, Pais pais) {
         this.nome = form.getNome();
+        this.pais = pais;
     }
 
     @Deprecated

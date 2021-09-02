@@ -1,6 +1,6 @@
 package br.com.zupacademy.vinicius.casadocodigo.estado;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import br.com.zupacademy.vinicius.casadocodigo.pais.Pais;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,18 +17,18 @@ import javax.validation.Valid;
 @RequestMapping("/estados")
 public class EstadoController {
 
-    @Autowired
+
     @PersistenceContext
     private EntityManager manager;
+
 
     @PostMapping
     @Transactional
     public ResponseEntity<?> salva(@RequestBody @Valid EstadoForm form ) {
-        Estado estado = new Estado(form);
+        Pais pais = manager.find(Pais.class, form.getPaisId());
+        Estado estado = new Estado(form, pais);
         manager.persist(estado);
         return new ResponseEntity<>(new EstadoDto(estado), HttpStatus.OK);
-
-
     }
 
 }
