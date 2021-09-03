@@ -80,4 +80,8 @@ public class ClienteDto {
     public String getCep() {
         return cep;
     }
+
+    public void setEstado(Estado estado) {
+        this.estado = estado;
+    }
 }

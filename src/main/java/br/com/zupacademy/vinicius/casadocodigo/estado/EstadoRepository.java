@@ -1,13 +1,15 @@
 package br.com.zupacademy.vinicius.casadocodigo.estado;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 
-public interface EstadoRepository extends JpaRepository<Estado, String> {
+@Repository
+public interface EstadoRepository extends JpaRepository<Estado, Long> {
 
-    Optional<Estado>findByNomeAndPaisId(String nome, Long idPais);
+    Optional<Estado>findByPaisId(Long idPais);
 
-    List<Estado> findAllByPaisId(Long idPais);
+    Optional<List<Estado>> findAllByPaisId(Long idPais);
 }

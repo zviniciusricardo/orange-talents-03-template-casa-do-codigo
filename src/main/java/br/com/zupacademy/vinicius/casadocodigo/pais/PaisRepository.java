@@ -4,7 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
-interface PaisRepository extends JpaRepository<Pais, String> {
+public interface PaisRepository extends JpaRepository<Pais, Long> {
 
     Optional<Pais> findByNome(String nome);
 }

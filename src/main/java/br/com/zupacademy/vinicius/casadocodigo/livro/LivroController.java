@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("livros")
+@RequestMapping("/livros")
 public class LivroController {
 
     @PersistenceContext
@@ -28,7 +28,7 @@ public class LivroController {
     public ResponseEntity<?> salvaLivro(@RequestBody @Valid LivroForm form) {
         Livro livro = form.toModel(manager);
         manager.persist(livro);
-        return ResponseEntity.ok().body(new LivroDto(livro).toString());
+        return ResponseEntity.ok().body(new LivroDto(livro));
     }
 
     @GetMapping

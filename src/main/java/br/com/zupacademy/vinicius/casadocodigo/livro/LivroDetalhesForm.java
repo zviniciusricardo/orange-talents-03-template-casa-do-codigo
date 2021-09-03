@@ -1,7 +1,7 @@
 package br.com.zupacademy.vinicius.casadocodigo.livro;
 
 import br.com.zupacademy.vinicius.casadocodigo.autor.Autor;
-import br.com.zupacademy.vinicius.casadocodigo.validator.IfExists;
+import br.com.zupacademy.vinicius.casadocodigo.validator.Exists;
 import br.com.zupacademy.vinicius.casadocodigo.validator.UniqueValue;
 
 import javax.validation.constraints.NotBlank;
@@ -12,7 +12,7 @@ public class LivroDetalhesForm {
 
 
     @NotNull
-    @IfExists(domainClass = Livro.class, fieldName = "id")
+    @Exists()
     @UniqueValue(domainClass = Livro.class, fieldName = "id")
     private Long id;
 
@@ -40,7 +40,7 @@ public class LivroDetalhesForm {
 
     private Float precoEbookMaisImpresso;
 
-    @IfExists(domainClass = Livro.class, fieldName = "autor")
+    @Exists()
     @NotBlank
     private Autor autor;
 

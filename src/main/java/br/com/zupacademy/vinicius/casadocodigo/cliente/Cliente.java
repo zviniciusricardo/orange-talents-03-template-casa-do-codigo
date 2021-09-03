@@ -4,6 +4,7 @@ import br.com.zupacademy.vinicius.casadocodigo.estado.Estado;
 import br.com.zupacademy.vinicius.casadocodigo.pais.Pais;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Cliente {
@@ -12,46 +13,59 @@ public class Cliente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
     private String email;
 
+    @NotNull
     private String nome;
 
+    @NotNull
     private String sobrenome;
 
+    @NotNull
     private String documento;
 
+    @NotNull
     private String endereco;
 
+    @NotNull
     private String complemento;
 
+    @NotNull
     private String cidade;
 
+    @NotNull
     @ManyToOne
     private Pais pais;
 
     @ManyToOne
     private Estado estado;
 
+    @NotNull
     private String telefone;
 
+    @NotNull
     private String cep;
-
-    public Cliente( ClienteForm form, Pais pais, Estado estado) {
-        this.email = form.getEmail();
-        this.nome = form.getNome();
-        this.sobrenome = form.getSobrenome();
-        this.documento = form.getDocumento();
-        this.endereco = form.getEndereco();
-        this.complemento = form.getComplemento();
-        this.cidade = form.getCidade();
-        this.pais = pais;
-        this.estado = estado;
-        this.telefone = form.getTelefone();
-        this.cep = form.getCep();
-    }
 
     @Deprecated
     public Cliente() {
+    }
+
+    public Cliente(String email, String nome, String sobrenome,
+                   String documento, String endereco,
+                   String complemento, String cidade, Pais pais,
+                   Estado estado, String telefone, String cep) {
+        this.email = email;
+        this.nome = nome;
+        this.sobrenome = sobrenome;
+        this.documento = documento;
+        this.endereco = endereco;
+        this.complemento = complemento;
+        this.cidade = cidade;
+        this.pais = pais;
+        this.estado = estado;
+        this.telefone = telefone;
+        this.cep = cep;
     }
 
     public Long getId() {
@@ -100,5 +114,9 @@ public class Cliente {
 
     public String getCep() {
         return cep;
+    }
+
+    public void setEstado(Estado estado) {
+        this.estado = estado;
     }
 }

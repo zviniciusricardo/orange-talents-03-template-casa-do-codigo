@@ -35,30 +35,30 @@ public class LivroForm {
     private LocalDate dataPublicacao;
 
     @NotNull
-    private Long idCategoria;
+    private Long categoriaId;
 
     @NotNull
-    private Long idAutor;
+    private Long autorId;
 
     public LivroForm(@NotBlank String titulo, @NotBlank @Size(max = 500) String resumo,
                      @NotNull @Digits(integer = 3, fraction = 2) @Min(20) Float preco,
                      @NotNull @Min(100) Integer numeroPaginas,
                      @NotNull Long isbn, @NotNull @Future LocalDate dataPublicacao,
-                     @NotNull Long idCategoria, @NotNull Long idAutor) {
+                     @NotNull Long categoriaId, @NotNull Long autorId) {
         this.titulo = titulo;
         this.resumo = resumo;
         this.preco = preco;
         this.numeroPaginas = numeroPaginas;
         this.isbn = isbn;
         this.dataPublicacao = dataPublicacao;
-        this.idCategoria = idCategoria;
-        this.idAutor = idAutor;
+        this.categoriaId = categoriaId;
+        this.autorId = autorId;
     }
 
     @PersistenceContext
     public Livro toModel(EntityManager manager) {
-        @NotNull Autor autor = manager.find(Autor.class, idAutor);
-        @NotNull Categoria categoria = manager.find(Categoria.class, idCategoria);
+        @NotNull Autor autor = manager.find(Autor.class, autorId);
+        @NotNull Categoria categoria = manager.find(Categoria.class, categoriaId);
 
         return new Livro(titulo, resumo, preco, numeroPaginas, isbn,
                 dataPublicacao, categoria, autor);
@@ -93,12 +93,12 @@ public class LivroForm {
         return dataPublicacao;
     }
 
-    public Long getIdCategoria() {
-        return idCategoria;
+    public Long getCategoriaId() {
+        return categoriaId;
     }
 
-    public Long getIdAutor() {
-        return idAutor;
+    public Long getAutorId() {
+        return autorId;
     }
 
     public void setSumario(String sumario) {

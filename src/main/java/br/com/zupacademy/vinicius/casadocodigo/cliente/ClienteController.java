@@ -1,13 +1,14 @@
 package br.com.zupacademy.vinicius.casadocodigo.cliente;
 
-import br.com.zupacademy.vinicius.casadocodigo.estado.Estado;
-import br.com.zupacademy.vinicius.casadocodigo.pais.Pais;
-import org.springframework.http.HttpStatus;
+import br.com.zupacademy.vinicius.casadocodigo.estado.EstadoRepository;
+import br.com.zupacademy.vinicius.casadocodigo.pais.PaisRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 
@@ -15,17 +16,20 @@ import javax.validation.Valid;
 @RequestMapping("/clientes")
 public class ClienteController {
 
-    @PersistenceContext
-    private EntityManager manager;
+    @Autowired
+    ClienteRepository clienteRepository;
+
+    @Autowired
+    PaisRepository paisRepository;
+
+    @Autowired
+    EstadoRepository estadoRepository;
+
 
     @PostMapping
-    @ResponseBody
     @Transactional
-    ResponseEntity<?> salvaCliente(@RequestBody @Valid ClienteForm form) {
-        Pais pais = manager.find(Pais.class, form.getPaisId());
-        Estado estado = manager.find(Estado.class, form.getEstadoId());
-        Cliente cliente = new Cliente(form, pais, estado);
-        manager.persist(cliente);
-        return new ResponseEntity<>(new ClienteDto(cliente), HttpStatus.OK);
+    public ResponseEntity<?> salvaCliente(@RequestBody @Valid ClienteForm form) {
+        Cliente cliente = clienteRepository.save(form.toModel(paisRepository, estadoRepository));
+        return ResponseEntity.ok().body(new ClienteDto(cliente));
     }
 }

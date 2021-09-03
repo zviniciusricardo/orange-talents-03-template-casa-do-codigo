@@ -2,7 +2,6 @@ package br.com.zupacademy.vinicius.casadocodigo.livro;
 
 import br.com.zupacademy.vinicius.casadocodigo.autor.Autor;
 import br.com.zupacademy.vinicius.casadocodigo.categoria.Categoria;
-import br.com.zupacademy.vinicius.casadocodigo.validator.IfExists;
 
 import javax.persistence.*;
 import javax.validation.Valid;
@@ -15,7 +14,6 @@ public class Livro {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @IfExists(domainClass = Livro.class, fieldName = "id")
     private Long id;
 
     @NotBlank
