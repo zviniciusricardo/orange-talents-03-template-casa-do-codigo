@@ -16,9 +16,8 @@ public @interface Exists {
     String message() default "Informe um valor que esteja em nosso banco.";
 
     Class<?>[] groups() default {};
-
     Class<? extends Payload>[] payload() default {};
-
     boolean optional() default false;
-
+    String fieldName();
+    Class<?> domainClass();
 }

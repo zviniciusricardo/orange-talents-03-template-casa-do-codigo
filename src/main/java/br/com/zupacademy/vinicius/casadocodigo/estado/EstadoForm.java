@@ -1,5 +1,6 @@
 package br.com.zupacademy.vinicius.casadocodigo.estado;
 
+import br.com.zupacademy.vinicius.casadocodigo.pais.Pais;
 import br.com.zupacademy.vinicius.casadocodigo.validator.Exists;
 import br.com.zupacademy.vinicius.casadocodigo.validator.UniqueValue;
 
@@ -13,7 +14,7 @@ public class EstadoForm {
     private String nome;
 
     @NotNull
-    @Exists(optional = true)
+    @Exists(domainClass = Pais.class, fieldName = "id")
     private Long paisId;
 
     public EstadoForm(String nome, Long paisId) {

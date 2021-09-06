@@ -12,7 +12,7 @@ public class LivroDetalhesForm {
 
 
     @NotNull
-    @Exists()
+    @Exists(domainClass = Livro.class, fieldName = "id")
     @UniqueValue(domainClass = Livro.class, fieldName = "id")
     private Long id;
 
@@ -40,8 +40,9 @@ public class LivroDetalhesForm {
 
     private Float precoEbookMaisImpresso;
 
-    @Exists()
+
     @NotBlank
+    @Exists(domainClass = Autor.class, fieldName = "id")
     private Autor autor;
 
     public LivroDetalhesForm(Livro livro) {
